@@ -8,19 +8,23 @@ export const colors = {
     shadow: "rgba(255, 64, 255, 0.6)",
   },
   yellow: {
-    primary: "#F7F768",
+    primary: "#fb5607",
+    shadow: "rgba(255, 139, 85, 0.7)",
+  },
+  warning: {
+    primary: "#FF712F",
     shadow: "rgba(247, 247, 104, 0.7)",
   },
-  green: {
+  success: {
     primary: "#7EB968",
     shadow: "rgba(193, 233, 167, 0.7)",
   },
-  blue: {
+  info: {
     primary: "#4792CD",
     shadow: "rgba(151, 198, 237, 0.7)",
   },
   error: {
-    primary: "#FF0000",
-    shadow: "rgba(255, 0,0,0.6)",
+    primary: "#F54242",
+    shadow: "rgba(245, 107, 107, 0.6)",
   },
 };
