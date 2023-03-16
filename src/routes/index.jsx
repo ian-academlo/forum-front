@@ -1,4 +1,5 @@
 import { useRoutes } from "react-router-dom";
+import EmailVerificationPage from "../pages/EmailVerificationPage";
 import ForumPage from "../pages/ForumPage";
 import Home from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
@@ -26,6 +27,10 @@ const Router = () => {
     {
       path: "/forum",
       element: <ForumPage />,
+    },
+    {
+      path: "/verify",
+      element: <EmailVerificationPage />,
     },
   ]);
 };
