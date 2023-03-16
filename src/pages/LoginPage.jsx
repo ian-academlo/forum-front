@@ -1,41 +1,58 @@
 import axios from "axios";
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Typography from "../components/Typography";
 import LoginForm from "../modules/login/LoginForm";
+import Snackbar from "../components/Snackbar";
 
 const LoginPage = () => {
+  const [reqError, setReqError] = useState(null);
+  const [showError, setShowError] = useState(false);
   const navigate = useNavigate();
 
   const login = (userData) => {
     axios
       .post("http://localhost:8000/api/v1/auth/login", userData)
       .then(() => navigate("/forum"))
-      .catch((error) => console.log(error.response));
+      .catch((error) => {
+        setShowError(true);
+        setReqError(error.response.data.message);
+      });
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-      }}
-    >
+    <>
+      {
+        <Snackbar
+          open={showError}
+          onClose={() => setShowError(false)}
+          message={reqError}
+          severity="error"
+          position={{ vertical: "top", horizontal: "right" }}
+        />
+      }
       <div
         style={{
-          position: "absolute",
-          top: "15px",
-          right: "15px",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
         }}
       >
-        <Typography variant="caption" color="magenta" glow>
-          Aún no tienes cuenta <Link to="/auth/register">registrate</Link>{" "}
-        </Typography>
+        <div
+          style={{
+            position: "absolute",
+            top: "15px",
+            right: "15px",
+          }}
+        >
+          <Typography variant="caption" color="magenta" glow>
+            Aún no tienes cuenta <Link to="/auth/register">registrate</Link>{" "}
+          </Typography>
+        </div>
+        <LoginForm onLogin={login} />
       </div>
-      <LoginForm onLogin={login} />
-    </div>
+    </>
   );
 };
 

@@ -50,7 +50,7 @@ const Snackbar = ({ open, onClose, message, severity, position }) => {
             )}
           </Typography>
           <Typography variant="paragraph" color={severity}>
-            Soy un snackbar feo shalala shalala
+            {message}
           </Typography>
           <Typography
             onClick={() => onClose()}
