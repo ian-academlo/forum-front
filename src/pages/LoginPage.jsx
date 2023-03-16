@@ -1,9 +1,19 @@
+import axios from "axios";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Typography from "../components/Typography";
 import LoginForm from "../modules/login/LoginForm";
 
 const LoginPage = () => {
+  const navigate = useNavigate();
+
+  const login = (userData) => {
+    axios
+      .post("http://localhost:8000/api/v1/auth/login", userData)
+      .then(() => navigate("/forum"))
+      .catch((error) => console.log(error.response));
+  };
+
   return (
     <div
       style={{
@@ -24,7 +34,7 @@ const LoginPage = () => {
           Aún no tienes cuenta <Link to="/auth/register">registrate</Link>{" "}
         </Typography>
       </div>
-      <LoginForm />
+      <LoginForm onLogin={login} />
     </div>
   );
 };

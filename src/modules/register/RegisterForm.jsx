@@ -4,7 +4,7 @@ import TextInput from "../../components/Input";
 import Typography from "../../components/Typography";
 import Container from "../login/components/Container";
 
-const RegisterForm = () => {
+const RegisterForm = ({ onRegister }) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -110,10 +110,13 @@ const RegisterForm = () => {
         size="medium"
         fullwidth
         onClick={() => {
-          validate() && clear();
+          if (validate()) {
+            onRegister(formData);
+            clear();
+          }
         }}
       >
-        Ingresar
+        Registrar
       </Button>
     </Container>
   );

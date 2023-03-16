@@ -4,7 +4,7 @@ import TextInput from "../../components/Input";
 import Typography from "../../components/Typography";
 import Container from "./components/Container";
 
-const LoginForm = () => {
+const LoginForm = ({ onLogin }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorEmail, setErrorEmail] = useState(false);
@@ -87,7 +87,10 @@ const LoginForm = () => {
         size="medium"
         fullwidth
         onClick={() => {
-          validate() && clear();
+          if (validate()) {
+            onLogin(formData);
+            clear();
+          }
         }}
       >
         Ingresar
