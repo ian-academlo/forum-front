@@ -1,8 +1,9 @@
 import { useRoutes } from "react-router-dom";
 import EmailVerificationPage from "../pages/EmailVerificationPage";
-import ForumPage from "../pages/ForumPage";
+import ForumPage from "../pages/forum/ForumPage";
 import Home from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
+import PostPage from "../pages/postPage/PostPage";
 import RegisterPage from "../pages/RegisterPage";
 
 const Router = () => {
@@ -25,8 +26,17 @@ const Router = () => {
       element: <Home />,
     },
     {
-      path: "/forum",
-      element: <ForumPage />,
+      path: "forum",
+      children: [
+        {
+          path: "category/:id",
+          element: <PostPage />,
+        },
+        {
+          path: "",
+          element: <ForumPage />,
+        },
+      ],
     },
     {
       path: "/verify",
