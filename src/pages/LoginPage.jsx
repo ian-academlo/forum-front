@@ -13,7 +13,11 @@ const LoginPage = () => {
   const login = (userData) => {
     axios
       .post("http://localhost:8000/api/v1/auth/login", userData)
-      .then(() => navigate("/forum"))
+      .then((res) => {
+        console.log(res.data);
+        localStorage.setItem("userInfo", JSON.stringify(res.data));
+        navigate("/forum");
+      })
       .catch((error) => {
         setShowError(true);
         setReqError(error.response.data.message);
@@ -22,15 +26,13 @@ const LoginPage = () => {
 
   return (
     <>
-      {
-        <Snackbar
-          open={showError}
-          onClose={() => setShowError(false)}
-          message={reqError}
-          severity="error"
-          position={{ vertical: "top", horizontal: "right" }}
-        />
-      }
+      <Snackbar
+        open={showError}
+        onClose={() => setShowError(false)}
+        message={reqError}
+        severity="error"
+        position={{ vertical: "bottom", horizontal: "right" }}
+      />
       <div
         style={{
           display: "flex",

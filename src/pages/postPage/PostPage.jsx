@@ -1,4 +1,6 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { Container } from "../../components/Container";
 import { FlexCont } from "../../components/Containers";
 import Icon from "../../components/Icon";
@@ -9,11 +11,22 @@ import { TopicsContainer } from "../forum/components/TopicsContainer";
 import PostItem from "./components/PostItem";
 
 const PostPage = () => {
-  const posts = [
-    { title: "Publicacion 1", author: "Iannacus" },
-    { title: "Publicacion 2", author: "Iannacus" },
-    { title: "Publicacion 3", author: "Iannacus" },
-  ];
+  const [posts, setPosts] = useState([]);
+  const { id } = useParams();
+
+  const { token } = JSON.parse(localStorage.getItem("userInfo"));
+  console.log(token);
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8000/api/v1/posts?categoryId=${id}`, {
+        headers: {
+          "access-token": token,
+        },
+      })
+      .then((res) => setPosts(res.data));
+  }, []);
+
   return (
     <>
       <Header />
@@ -26,8 +39,9 @@ const PostPage = () => {
           <Topics title="Temas">
             {posts.map((post) => (
               <PostItem
+                key={post.id}
                 title={post.title}
-                author={post.author}
+                author={post["author_name"].username}
                 date="16 Mar 2023"
               />
             ))}
