@@ -53,6 +53,7 @@ const PostPage = () => {
               return (
                 <PostItem
                   key={post.id}
+                  postId={post.id}
                   title={post.title}
                   author={post["author_name"].username}
                   date={postDate}

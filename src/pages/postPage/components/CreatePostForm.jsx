@@ -4,6 +4,7 @@ import TextInput from "../../../components/Input";
 import TextArea from "../../../components/TextArea";
 import Typography from "../../../components/Typography";
 import { FlexCont } from "../../../components/Containers";
+
 const CreatePostForm = ({ onSubmit, onClose }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");

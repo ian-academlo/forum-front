@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Typography from "../../../components/Typography";
 import { colors } from "../../../theme/colors";
@@ -44,7 +45,8 @@ const profilePicture2 =
 const profilePicture =
   "https://img.freepik.com/vector-gratis/avatar-personaje-empresario-aislado_24877-60111.jpg?w=2000";
 
-const PostItem = ({ title, author, date }) => {
+const PostItem = ({ title, author, date, postId }) => {
+  const navigate = useNavigate();
   return (
     <PostContainer>
       <FlexCont>
@@ -52,7 +54,13 @@ const PostItem = ({ title, author, date }) => {
           <PostImage image={profilePicture} />
         </ImageContainer>
         <InfoContainer>
-          <Typography variant="subtitle" color="cyan" glow hover>
+          <Typography
+            variant="subtitle"
+            color="cyan"
+            glow
+            hover
+            onClick={() => navigate(`/forum/single-post/${postId}`)}
+          >
             {title}
           </Typography>
           <FlexCont>

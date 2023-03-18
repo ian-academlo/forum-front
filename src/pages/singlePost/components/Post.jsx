@@ -65,30 +65,45 @@ const Content = styled.div`
   border-top: ${`1px solid ${colors.cyan.primary}`};
 `;
 
-const Post = ({ i }) => {
+const months = [
+  "Ene",
+  "Feb",
+  "Mar",
+  "Abr",
+  "May",
+  "Jun",
+  "Jul",
+  "Ago",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dic",
+];
+
+const Post = ({ i, content, date, author }) => {
+  console.log(date);
+  const postDate = new Date(date);
+  const showDate = `${postDate.getDay()} ${
+    months[postDate.getMonth()]
+  } ${postDate.getFullYear()} - ${postDate.getHours()}:${postDate.getMinutes()}`;
   return (
     <>
       <PostContainer>
         <UserContent>
           <ImagePostContainer image={profilePicture} />
           <Typography variant="subtitle" color="magenta" glow>
-            username
+            {author}
           </Typography>
         </UserContent>
         <PostContent>
           <FlexCont justify="space-between">
             <Typography variant="caption" color="cyan" glow>
-              7/11/2023
+              {showDate}
             </Typography>
             <Typography variant="caption"> # {i}</Typography>
           </FlexCont>
           <Content>
-            <Typography variant="paragraph">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur
-              obcaecati vitae quasi dolorem amet rerum quisquam nostrum optio
-              quo! Ex possimus nulla recusandae exercitationem aliquid. Iusto
-              consequatur eum sint quae.
-            </Typography>
+            <Typography variant="paragraph">{content}</Typography>
           </Content>
         </PostContent>
       </PostContainer>
