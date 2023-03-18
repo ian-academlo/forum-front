@@ -13,6 +13,9 @@ const Text = styled.p`
   font-weight: ${(props) =>
     props.variant ? sizes[props.variant].weight : "14px"};
   margin: 0;
+  &:hover {
+    cursor: ${(props) => (props.hover ? "pointer" : "defautl")};
+  }
 `;
 
 const Typography = ({ children, variant, ...rest }) => {

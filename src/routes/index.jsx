@@ -5,6 +5,7 @@ import Home from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
 import PostPage from "../pages/postPage/PostPage";
 import RegisterPage from "../pages/RegisterPage";
+import SinglePostPage from "../pages/singlePost/SinglePostPage";
 import RequireAuth from "./require-auth";
 
 const Router = () => {
@@ -43,6 +44,10 @@ const Router = () => {
         {
           path: "category/:id",
           element: <PostPage />,
+        },
+        {
+          path: "single-post/:id",
+          element: <SinglePostPage />,
         },
       ],
     },

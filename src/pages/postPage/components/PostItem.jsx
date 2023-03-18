@@ -52,7 +52,7 @@ const PostItem = ({ title, author, date }) => {
           <PostImage image={profilePicture} />
         </ImageContainer>
         <InfoContainer>
-          <Typography variant="subtitle" color="cyan" glow>
+          <Typography variant="subtitle" color="cyan" glow hover>
             {title}
           </Typography>
           <FlexCont>
