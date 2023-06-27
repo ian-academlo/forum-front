@@ -10,6 +10,8 @@ const LoginPage = () => {
   const [showError, setShowError] = useState(false);
   const navigate = useNavigate();
 
+  console.log(import.meta.env.VITE_PORT);
+
   const login = (userData) => {
     axios
       .post("http://localhost:8000/api/v1/auth/login", userData)
